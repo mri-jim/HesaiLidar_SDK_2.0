@@ -132,6 +132,13 @@ if(NOT DISENABLE_TEST_CC)
     target_link_libraries(multi_test PRIVATE
         hesai_sdk_lib
     )
+
+    add_executable(record_pcap
+        test/record_pcap.cc
+    )
+    target_link_libraries(record_pcap PRIVATE
+        hesai_sdk_lib
+    )
 endif(NOT DISENABLE_TEST_CC)
 
 # ============================================
