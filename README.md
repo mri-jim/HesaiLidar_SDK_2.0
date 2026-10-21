@@ -142,3 +142,24 @@ Please refer to **[Point Cloud Rearrangement Function](docs/point_cloud_rearrang
 
 ## 4 Functional Parameter Reference
 Please refer to **[Functional Parameter Reference](docs/parameter_introduction.md)**.
+
+
+# My install and build
+
+```bash
+sudo apt update
+sudo apt install -y libpcl-dev libpcap-dev libyaml-cpp-dev openssl
+
+cd HesaiLidar_SDK_2.0
+mkdir -p build && cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make -j$(nproc) record_pcap
+
+./bin/record_pcap ../config/sample_config.ini [seconds] [output.pcap]
+
+```
+# To be tested
+- GPU acceleration (CUDA): Orin uses Ampere architecture (sm_87). SDK default is 61 (Pascal). If enabling GPU parsing on Orin, must specify arch:
+```bash
+cmake -DCMAKE_BUILD_TYPE=Release -DFIND_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=87 ..
+```
